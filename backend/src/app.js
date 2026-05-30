@@ -6,8 +6,9 @@ import productRoutes from './routes/product.routes.js'
 
 const app=express()
 
-
+// for req data
 app.use(express.json());
+// for cookies
 app.use(cookieParser());
 
 app.get('/',(req,res)=>{
