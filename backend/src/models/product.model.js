@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-// plant product
+// plant product info with video
 const productSchema=mongoose.Schema({
     name:{
         type:String,
