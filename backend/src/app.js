@@ -14,8 +14,9 @@ app.use(cookieParser());
 app.get('/',(req,res)=>{
     res.send('<h1><marquee>Hello</marquee></h1>')
 })
-
+// Authentication
 app.use('/api/auth',authRoutes)
+// Product
 app.use('/api/product',productRoutes)
 
 
