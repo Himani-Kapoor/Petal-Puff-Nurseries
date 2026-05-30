@@ -3,6 +3,7 @@ import productControllers from '../controllers/product.controllers.js';
 import authMiddleware from '../middleware/auth.middleware.js';
 import multer from 'multer'
 
+// for Video Upload
 const upload=multer({
     storage:multer.memoryStorage()
 })
