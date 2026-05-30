@@ -5,7 +5,5 @@ async function addProduct(req,res){
     res.send("Product added successfully")
     console.log(req.body)
     console.log(req.file)
- 
 }
-
 export default {addProduct}
