@@ -10,7 +10,7 @@ const upload=multer({
 
 const router=express.Router();
 
-// post- api/product  {protected}
+// post- api/product  {protected}, using middleware and multer
 router.post('/',authMiddleware.authNurseryOwnerMiddleware,upload.single('video'),productControllers.addProduct)
 
 export default router;
