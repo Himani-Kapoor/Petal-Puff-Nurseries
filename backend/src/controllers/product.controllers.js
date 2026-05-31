@@ -5,5 +5,6 @@ async function addProduct(req,res){
     res.send("Product added successfully")
     console.log(req.body)
     console.log(req.file)
+    const fileUploadResult= await uploadFile(req.file.buffer,req.file.originalname)
 }
 export default {addProduct}
