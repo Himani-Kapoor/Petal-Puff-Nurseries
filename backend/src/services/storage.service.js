@@ -6,4 +6,6 @@ const imagekit = new ImageKit({
     urlEndpoint= process.env.IMAGEKIT_URL_ENDPOINT
 })
 
-export default imagekit;
+async function uploadFile(file,fileName) {
+    const result= await imagekit.upload()
+}
