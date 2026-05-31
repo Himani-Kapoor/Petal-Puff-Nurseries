@@ -12,4 +12,5 @@ async function uploadFile(file,fileName) {
         fileName: fileName,
         useUniqueFileName: false
     })
+    return result;
 }
