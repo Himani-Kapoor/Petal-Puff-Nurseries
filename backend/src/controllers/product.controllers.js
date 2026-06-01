@@ -14,6 +14,6 @@ async function addProduct(req, res) {
     const fileUploadResult = await storageService.uploadFile(req.file.buffer, uuid());
     console.log(fileUploadResult);
 
-    res.send({ message: 'Product added successfully', upload: fileUploadResult });
+    res.send({ message: 'Product uploaded successfully', upload: fileUploadResult });
 }
 export default { addProduct }
