@@ -16,4 +16,19 @@ async function addProduct(req, res) {
 
     res.send({ message: 'Product uploaded successfully', upload: fileUploadResult });
 }
-export default { addProduct }
+
+async function getProduct(req,res){
+    const product=await productModel.find();
+    res.status(200).json({
+        message:"fetched successfully",
+        products
+    });
+
+
+    res.send(product);
+}
+
+export default { addProduct,
+    getProduct
+
+ }
