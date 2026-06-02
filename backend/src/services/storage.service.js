@@ -1,4 +1,4 @@
-import ImageKit from '@imagekit/nodejs'
+import ImageKit from 'imagekit'
 import 'dotenv/config'
 
 
@@ -9,10 +9,10 @@ const imagekit = new ImageKit({
 })
 
 async function uploadFile(file, fileName) {
-    const result = await imagekit.files.upload({
+    const result = await imagekit.upload({
         file: file,
         fileName: fileName,
-        useUniqueFileName: false
+        folder:"/folder_image"
     });
     return result;
 }
