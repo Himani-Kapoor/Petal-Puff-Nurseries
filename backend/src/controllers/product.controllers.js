@@ -21,7 +21,8 @@ async function getProduct(req,res){
     const product=await productModel.find();
     res.status(200).json({
         message:"fetched successfully",
-        products
+        
+        product
     });
 
 

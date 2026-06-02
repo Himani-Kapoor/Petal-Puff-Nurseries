@@ -18,5 +18,9 @@ router.post('/',
 );
 
 //{/api/product for user} <-protected
-router.get('/',)
+router.get('/', 
+    authMiddleware.authUserMiddleware,
+    productControllers.getProduct
+
+)
 export default router;
