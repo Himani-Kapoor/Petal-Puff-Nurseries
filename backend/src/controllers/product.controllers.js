@@ -14,19 +14,33 @@ async function addProduct(req, res) {
     const fileUploadResult = await storageService.uploadFile(req.file.buffer, uuid());
     console.log(fileUploadResult);
 
-    res.send({ message: 'Product uploaded successfully', upload: fileUploadResult });
+    const { name, description, price } = req.body;
+    const product = await productModel.create({
+        name,
+        nurseryOwner: req.nurseryOwner?._id,
+        video: fileUploadResult.url,
+        description,
+        price,
+    });
+    // adding to DB
+    await product.save();
+
+    res.status(201).send({ message: 'Product uploaded successfully', product, upload: fileUploadResult });
 }
 
 async function getProduct(req,res){
-    const product=await productModel.find();
-    res.status(200).json({
-        message:"fetched successfully",
-        
-        product
-    });
-
-
-    res.send(product);
+    try {
+        const products = await productModel.find({});
+        res.status(200).json({
+            message: "fetched successfully",
+            products:products  
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Error fetching products",
+            error: error.message
+        });
+    }
 }
 
 export default { addProduct,

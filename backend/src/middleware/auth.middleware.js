@@ -8,6 +8,7 @@ async function authNurseryOwnerMiddleware(req, res, next){
         res.status(401).json({
             message:"You are not logged in"      
         })
+        return;
     }
     try{
         const decoded=jwt.verify(token,process.env.JWT_SECRET)
@@ -28,6 +29,7 @@ async function authUserMiddleware(req, res, next){
         res.status(401).json({
             message:"You are not logged in"
         })
+        return;
     
     }
     try{
