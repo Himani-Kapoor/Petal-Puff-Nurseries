@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../styles/auth.css'
 import { Link } from 'react-router-dom'
 
 const NurseryOwnerLogin = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log({ email, password })
+  }
+
   return (
     <div className="auth-page">
       <div className="auth-card">
@@ -11,15 +19,15 @@ const NurseryOwnerLogin = () => {
           <p>Sign in to manage your Nursery Owner profile.</p>
         </header>
 
-        <form className="auth-form" onSubmit={(e)=>e.preventDefault()}>
+        <form className="auth-form" onSubmit={handleSubmit}>
           <label htmlFor="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="owner@business.com" />
+          <input id="email" name="email" type="email" placeholder="owner@business.com" value={email} onChange={(e)=>setEmail(e.target.value)} />
 
           <label htmlFor="password">Password</label>
-          <input id="password" name="password" type="password" placeholder="Your password" />
+          <input id="password" name="password" type="password" placeholder="Your password" value={password} onChange={(e)=>setPassword(e.target.value)} />
 
           <div className="auth-actions">
-            <button type="button" className="btn btn-primary">Sign in</button>
+            <button type="submit" className="btn btn-primary">Sign in</button>
             <Link to="/nursery-owner/register" className="btn btn-ghost">Create account</Link>
           </div>
         </form>
