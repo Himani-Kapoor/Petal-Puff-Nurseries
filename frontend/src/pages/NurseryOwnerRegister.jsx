@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../styles/auth.css'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const NurseryOwnerRegister = () => {
 
@@ -9,25 +10,21 @@ const NurseryOwnerRegister = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [address, setAddress] = useState('')
   const [password, setPassword] = useState('')
-
-  useEffect(()=>{
-    axios.post('http://localhost:5000/api/auth/nursery-owner/register', {
-      ownerName,
-      email,
-      phoneNumber,
-      address,
-      password
-    }).then((res)=>{
-      console.log(res)
-    }).catch((err)=>{
-      console.log(err)
-    })
-  }, [])
-
-  const handleSubmit = (e) => {
+  // const api = "http://localhost:5000/api"
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // TODO: perform registration action
-    console.log({ ownerName, email, phoneNumber, address, password })
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth/nursery-owner/register', {
+        name,
+        email,
+        password,
+        phoneNumber,
+        address
+      }, { withCredentials: true })
+      console.log('Registration response:', res.data)
+    } catch (err) {
+      console.error('Registration error:', err.response ? err.response.data : err.message)
+    }
   }
   return (
     <div className="auth-page">
