@@ -21,10 +21,10 @@ const NurseryOwnerLogin = () => {
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <label htmlFor="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="owner@business.com" value={email} onChange={(e)=>setEmail(e.target.value)} />
+          <input id="email" name="email" type="email" placeholder="owner@business.com" autocomplete="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
 
           <label htmlFor="password">Password</label>
-          <input id="password" name="password" type="password" placeholder="Your password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+          <input id="password" name="password" type="password" placeholder="Your password" autocomplete="current-password" value={password} onChange={(e)=>setPassword(e.target.value)} />
 
           <div className="auth-actions">
             <button type="submit" className="btn btn-primary">Sign in</button>

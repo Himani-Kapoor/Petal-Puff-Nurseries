@@ -29,34 +29,34 @@ const UserRegister = () => {
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <label htmlFor="fullname">Full name</label>
-          <input id="fullname" name="fullname" placeholder="Jane Doe" value={fullname} onChange={(e)=>setFullname(e.target.value)} />
+          <input id="fullname" name="fullname" placeholder="Jane Doe" autocomplete="name" value={fullname} onChange={(e)=>setFullname(e.target.value)} />
 
           <label htmlFor="username">Username</label>
-          <input id="username" name="username" placeholder="janedoe" value={username} onChange={(e)=>setUsername(e.target.value)} />
+          <input id="username" name="username" placeholder="janedoe" autocomplete="username" value={username} onChange={(e)=>setUsername(e.target.value)} />
 
           <label htmlFor="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com" value={email} onChange={(e)=>setEmail(e.target.value)} />
+          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
 
           <label htmlFor="phoneNumber">Phone number</label>
-          <input id="phoneNumber" name="phoneNumber" placeholder="e.g. +91 98765 43210" value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)} />
+          <input id="phoneNumber" name="phoneNumber" placeholder="e.g. +91 98765 43210" autocomplete="tel" value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)} />
 
           <label htmlFor="street">Street</label>
-          <input id="street" name="street" placeholder="Street address" value={street} onChange={(e)=>setStreet(e.target.value)} />
+          <input id="street" name="street" placeholder="Street address" autocomplete="street-address" value={street} onChange={(e)=>setStreet(e.target.value)} />
 
           <label htmlFor="city">City</label>
-          <input id="city" name="city" placeholder="City" value={city} onChange={(e)=>setCity(e.target.value)} />
+          <input id="city" name="city" placeholder="City" autocomplete="address-level2" value={city} onChange={(e)=>setCity(e.target.value)} />
 
           <label htmlFor="state">State</label>
-          <input id="state" name="state" placeholder="State" value={stateVal} onChange={(e)=>setStateVal(e.target.value)} />
+          <input id="state" name="state" placeholder="State" autocomplete="address-level1" value={stateVal} onChange={(e)=>setStateVal(e.target.value)} />
 
           <label htmlFor="zipCode">Zip code</label>
-          <input id="zipCode" name="zipCode" placeholder="Zip code" value={zipCode} onChange={(e)=>setZipCode(e.target.value)} />
+          <input id="zipCode" name="zipCode" placeholder="Zip code" autocomplete="postal-code" value={zipCode} onChange={(e)=>setZipCode(e.target.value)} />
 
           <label htmlFor="country">Country</label>
-          <input id="country" name="country" placeholder="Country (default: India)" value={country} onChange={(e)=>setCountry(e.target.value)} />
+          <input id="country" name="country" placeholder="Country (default: India)" autocomplete="country" value={country} onChange={(e)=>setCountry(e.target.value)} />
 
           <label htmlFor="password">Password</label>
-          <input id="password" name="password" type="password" placeholder="Choose a password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+          <input id="password" name="password" type="password" placeholder="Choose a password" autocomplete="new-password" value={password} onChange={(e)=>setPassword(e.target.value)} />
 
           <div className="auth-actions">
             <button type="submit" className="btn btn-primary">Create account</button>
