@@ -6,17 +6,33 @@ const UserRegister = () => {
   const [fullname, setFullname] = useState('')
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [street, setStreet] = useState('')
-  const [city, setCity] = useState('')
-  const [stateVal, setStateVal] = useState('')
-  const [zipCode, setZipCode] = useState('')
-  const [country, setCountry] = useState('')
   const [password, setPassword] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [address, setAddress] = useState('') 
+  
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log({ fullname, username, email, phoneNumber, street, city, stateVal, zipCode, country, password })
+    const data = {
+      fullname,
+      username,
+      email,
+      password,
+      phoneNumber,
+      address
+    }
+
+    try {
+      const response = await axios.post('/api/auth/user/register', data, { withCredentials: true })
+      console.log('Success:', response.data)
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        console.error('The requested endpoint was not found (404). Check your URL.')
+      } else {
+        console.error('An error occurred:', error.message)
+      }
+    }
   }
 
   return (

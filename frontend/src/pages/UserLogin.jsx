@@ -6,9 +6,31 @@ const UserLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log({ email, password })
+    setError(null)
+    setLoading(true)
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/api/auth/user/login',
+        { email, password },
+        { withCredentials: true }
+      )
+      // save basic account info to localStorage
+      if (response.data && response.data.account) {
+        localStorage.setItem('nurseryOwner', JSON.stringify(response.data.account))
+      }
+      setLoading(false)
+      // redirect to home or owner dashboard (adjust if you have a dashboard route)
+      navigate('/')
+    } catch (err) {
+      setLoading(false)
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message)
+      } else {
+        setError(err.message || 'Login failed')
+      }
+    }
   }
 
   return (

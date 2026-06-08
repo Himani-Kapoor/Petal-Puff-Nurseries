@@ -1,25 +1,39 @@
 import React, { useState } from 'react'
 import '../styles/auth.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const NurseryOwnerLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError(null)
+    setLoading(true)
     try {
-      const response = await axios.get('/api/auth/nursery-owner/login')
-      console.log(response.data)
-      
-      // check exist or not
-    } catch (error) { 
-      if (error.response && error.response.status === 404) {
-        console.error('The requested endpoint was not found (404). Check your URL.')
-      } else {
-        console.error('An error occurred:', error.message)
+      const response = await axios.post(
+        'http://localhost:5000/api/auth/nursery-owner/login',
+        { email, password },
+        { withCredentials: true }
+      )
+      // save basic account info to localStorage
+      if (response.data && response.data.account) {
+        localStorage.setItem('nurseryOwner', JSON.stringify(response.data.account))
       }
-
+      setLoading(false)
+      // redirect to home or owner dashboard (adjust if you have a dashboard route)
+      navigate('/')
+    } catch (err) {
+      setLoading(false)
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message)
+      } else {
+        setError(err.message || 'Login failed')
+      }
     }
   }
 
@@ -32,15 +46,37 @@ const NurseryOwnerLogin = () => {
         </header>
 
         <form className="auth-form" onSubmit={handleSubmit}>
+          {error && <div className="auth-error">{error}</div>}
+
           <label htmlFor="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="owner@business.com" autocomplete="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="owner@business.com"
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
           <label htmlFor="password">Password</label>
-          <input id="password" name="password" type="password" placeholder="Your password" autocomplete="current-password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Your password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
           <div className="auth-actions">
-            <button type="submit" className="btn btn-primary">Sign in</button>
-            <Link to="/nursery-owner/register" className="btn btn-ghost">Create account</Link>
+            <button type="submit" className="btn btn-primary" disabled={loading}>
+              {loading ? 'Signing in…' : 'Sign in'}
+            </button>
+            <Link to="/nursery-owner/register" className="btn btn-ghost">
+              Create account
+            </Link>
           </div>
         </form>
 

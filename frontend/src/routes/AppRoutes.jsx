@@ -15,7 +15,10 @@ const AppRoutes = () => {
             <Route path="/nursery-owner/register" element={<NurseryOwnerRegister/>}/>
             <Route path="nursery-owner/login" element={<NurseryOwnerLogin/>}/>
 
-
+          <button>User Registration</button>
+          <button>User Login</button>
+          <button>Nursery Owner Registration</button>
+          <button>Nursery Owner Login</button>
 
 
 
