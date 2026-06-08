@@ -27,7 +27,10 @@ const AppRoutes = () => {
 
 
     <div>
-      
+      <a href="http://localhost:5173/nursery-Owner/register">Register</a><br />
+      <a href="http://localhost:5173/nursery-Owner/login">Login</a><br/>
+      <a href="http://localhost:5173/user/register">Register</a><br />
+      <a href="http://localhost:5173/user/login">Login</a>
     </div>
     </>
   )
