@@ -8,7 +8,19 @@ const NurseryOwnerLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log({ email, password })
+    try {
+      const response = await axios.get('/api/auth/nursery-owner/login')
+      console.log(response.data)
+      
+      // check exist or not
+    } catch (error) { 
+      if (error.response && error.response.status === 404) {
+        console.error('The requested endpoint was not found (404). Check your URL.')
+      } else {
+        console.error('An error occurred:', error.message)
+      }
+
+    }
   }
 
   return (
