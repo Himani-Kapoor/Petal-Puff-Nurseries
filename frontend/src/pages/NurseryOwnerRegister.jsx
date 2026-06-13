@@ -21,7 +21,7 @@ const NurseryOwnerRegister = () => {
     }
 
     try {
-      const response = await axios.post('/api/auth/nursery-owner/register', data, { withCredentials: true })
+      const response = await axios.post('http://localhost:5000/api/auth/nursery-owner/register', data, { withCredentials: true })
       console.log('Success:', response.data)
     } catch (error) {
       if (error.response && error.response.status === 404) {
